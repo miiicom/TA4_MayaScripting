@@ -17,11 +17,13 @@ locatorGroup = []
 for loopNum in range(5):
 	locatorName = 'LegLocator' + str(loopNum)
 	locatorGroup.append (createLocator(locatorName, 0, loopNum * 5, 0))
+	pm.select(d=True)
 
 legLocatorGroup = pm.group(locatorGroup, n='legLocatorGroup')
 
 
 for loopNum in range(5):
+	pm.select(d=True)
 	jointName = 'legJoint' + str(loopNum)
 	createAndBindJointToLoc?jointName,locatorGroup[loopNum])
 
