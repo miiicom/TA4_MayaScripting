@@ -7,7 +7,7 @@ def createLocator(name, x,y,z):
 	
 def createAndBindJointToLoc(jointName, LocHandler):
 	jointHandler = pm.joint(n = jointName)
-	pm.pointConstraint(LocHandler,jointHandler,w = 1, offset = (0,0,0))
+	node = pm.pointConstraint(LocHandler,jointHandler,w = 1, offset = (0,0,0))
 	pm.delete(node) 
 	pm.select(d=True)
 	return jointHandler
@@ -20,4 +20,8 @@ for loopNum in range(5):
 
 legLocatorGroup = pm.group(locatorGroup, n='legLocatorGroup')
 
+
+for loopNum in range(5):
+	jointName = 'legJoint' + str(loopNum)
+	createAndBindJointToLoc?jointName,locatorGroup[loopNum])
 
