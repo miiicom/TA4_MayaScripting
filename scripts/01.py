@@ -1,44 +1,3 @@
-import pymel.core as pm
-
-
-def createLocator(name, x,y,z):
-	locator = pm.spaceLocator(n = name)
-	locator.t.set(x,y,z)
-	return locator
-	
-def createAndBindJointToLoc(jointName, LocHandler):
-	jointHandler = pm.joint(n = jointName)
-	node = pm.pointConstraint(LocHandler,jointHandler,w = 1, offset = (0,0,0))
-	pm.delete(node) 
-	pm.select(d=True)
-	return jointHandler
-
-def createAndBindCurveToJoint(curveName,jointHandler):
-	curveHandler = pm.circle(n = curveName)
-	node = pm.pointConstraint(jointHandler,curveHandler,w = 1, offset = (0,0,0))
-	pm.delete(node) 
-	pm.select(d=True)
-	return curveHandler
-	
-def giveOrientConstrain(Giver, Taker):
-    node = pm.orientConstraint(Taker, Giver, weight=1, offset=(0,0,0))
-    pm.delete(node)
-    pm.select(d=1)
-
-#create 5 locator
-JOINT_NUMBER = 5
-locatorGroup = []
-for loopNum in range(JOINT_NUMBER):
-	locatorName = 'LegLocator' + str(loopNum)
-	locatorGroup.append (createLocator(locatorName, 0, loopNum * 5, 0))
-	pm.makeIdentity(locatorGroup[loopNum],apply=True,t=1,r=1,s=1,n=0,pn=1)
-	pm.select(d=True)
-	
-legLocatorGroup = pm.group(locatorGroup, n='legLocatorGroup')
-legLocatorGroup.zeroTransformPivots()
-
-#should have a UI to let artist use locator around
-
 # create 5 joint and snap them to the locator
 jointGroup = []
 for loopNum in range(JOINT_NUMBER):
@@ -89,9 +48,3 @@ print curveGroup
 
 for loopNum in range(0,JOINT_NUMBER):
 	pm.orientConstraint(curveGroup[loopNum],jointGroup[loopNum], weight=1, mo = True)
-
-pm.orientConstraint(curveGroup[0],jointGroup[0], weight=1, mo = True)
-pm.orientConstraint(curveGroup[1],jointGroup[1], weight=1, mo = True)
-pm.orientConstraint(curveGroup[2],jointGroup[2], weight=1, mo = True)
-pm.orientConstraint(curveGroup[3],jointGroup[3], weight=1, mo = True)
-pm.orientConstraint(curveGroup[4],jointGroup[4], weight=1, mo = True)
