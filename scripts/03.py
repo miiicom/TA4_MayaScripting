@@ -51,7 +51,7 @@ legLocatorGroup.zeroTransformPivots()
 jointGroup = []
 for loopNum in range(JOINT_NUMBER):
 	pm.select(d=True)
-	jointName = 'legJoint' + str(loopNum)
+	jointName = 'FK_leg' + str(loopNum) + '_jnt'
 	jointGroup.append(createAndBindJointToLoc(jointName,locatorGroup[loopNum]))
 	pm.makeIdentity(jointGroup[loopNum],apply=True,t=1,r=1,s=1,n=0,pn=1)
 	
@@ -60,7 +60,7 @@ for loopNum in range(JOINT_NUMBER):
 curveGroup = []
 for loopNum in range(JOINT_NUMBER):
 	pm.select(d=True)
-	CurveName = 'legCurve' + str(loopNum)
+	CurveName = 'FK_leg' + str(loopNum) + '_ctl'
 	curveGroup.append(createAndBindCurveToJoint(CurveName,jointGroup[loopNum]))
 	pm.makeIdentity(curveGroup[loopNum],apply=True,t=1,r=1,s=1,n=0,pn=1)
 	pm.setAttr(curveGroup[loopNum][0] + '.translateX', lock = True)
@@ -82,7 +82,7 @@ for loopNum in range(JOINT_NUMBER):
 grpGroup = []
 for loopNum in range(JOINT_NUMBER):
 	pm.select(d=True)
-	grpName = 'legGroup' + str(loopNum)
+	grpName = 'FK_leg' + str(loopNum) + '_grp'
 	grpHandler = createAndBindGroupToCurve(grpName, curveGroup[loopNum])
 	pm.setAttr(grpHandler + '.translate',[0,0,0])
 	grpGroup.append(grpHandler)
