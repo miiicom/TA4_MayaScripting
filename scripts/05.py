@@ -106,6 +106,28 @@ for loopNum in range(JOINT_NUMBER):
 	pm.setAttr(FKcurveGroup[loopNum][0] + '.scaleY', keyable=False)
 	pm.setAttr(FKcurveGroup[loopNum][0] + '.scaleZ', keyable=False)
 	pm.editDisplayLayerMembers(FKLayer,FKcurveGroup[loopNum][0])
+	
+#Create 1 curve for FK, sanp it and group it
+IKCurveGroup = []
+pm.select(d=True)
+CurveName = 'IK_leg_ctl'
+IKCurveGroup.append(createAndBindCurveToJoint(CurveName,IKjointGroup[1]));
+pm.setAttr(IKCurveGroup[0][0] + '.scaleX', 2)
+pm.setAttr(IKCurveGroup[0][0] + '.scaleY', 2)
+pm.setAttr(IKCurveGroup[0][0] + '.scaleZ', 2)
+pm.setAttr(IKCurveGroup[0][0] + '.rotateX', 90)
+pm.makeIdentity(IKCurveGroup[0],apply=True,t=1,r=1,s=1,n=0,pn=1)
+
+IKgrpGroup = []
+grpName = 'IK_leg_grp'
+grpHandler = createGroup(grpName)
+pm.setAttr(grpHandler + '.translate',[0,0,0])
+IKgrpGroup.append(grpHandler)
+node = pm.pointConstraint(IKCurveGroup[0][0],IKgrpGroup[0],w = 1, offset = (0,0,0),mo = False)
+pm.delete(node) 
+pm.select(d=True)
+pm.makeIdentity(IKgrpGroup[0],apply=True,t=1,r=1,s=1,n=0,pn=1)
+pm.parent(IKCurveGroup[0][0],IKgrpGroup[0])
 
 #create 5 group nodes for FK
 FKgrpGroup = []
@@ -121,6 +143,8 @@ for loopNum in range(JOINT_NUMBER):
 	pm.delete(node) 
 	pm.select(d=True)
 	pm.makeIdentity(FKgrpGroup[loopNum],apply=True,t=1,r=1,s=1,n=0,pn=1)
+	
+	
 
 # parent those joints
 for loopNum in range(0,JOINT_NUMBER-1):
@@ -168,3 +192,8 @@ cmds.setAttr(toeJointNameZ,0)
 
 for loopNum in range(0,JOINT_NUMBER):
 	pm.orientConstraint(FKcurveGroup[loopNum],FKjointGroup[loopNum], weight=1, mo = True)
+	
+# give POINT constrain
+
+pm.pointConstraint(IKCurveGroup[0],IKjointGroup[1],weight=1, mo = True)
+	
