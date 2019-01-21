@@ -28,7 +28,7 @@ def giveOrientConstrain(Giver, Taker):
     node = pm.orientConstraint(Taker, Giver, weight=1, offset=(0,0,0))
     pm.delete(node)
     pm.select(d=1)
-jointLayer = pm.createDisplayLayer(e = True,n = "jointLayer");
+
 
 
 #create 5 locator
@@ -48,22 +48,45 @@ legLocatorGroup.zeroTransformPivots()
 
 # create 5 joint and snap them to the locator
 FKjointGroup = []
+FKLayer = pm.createDisplayLayer(e = True,n = "FKLayer",nr = True);
+pm.setAttr(FKLayer + ".color", True)
+pm.setAttr(FKLayer + ".overrideRGBColors", True)
+pm.setAttr(FKLayer + ".overrideColorRGB", [1,0,0])
 for loopNum in range(JOINT_NUMBER):
 	pm.select(d=True)
 	jointName = 'FK_leg' + str(loopNum) + '_jnt'
 	FKjointGroup.append(createAndBindJointToLoc(jointName,locatorGroup[loopNum]))
 	pm.makeIdentity(FKjointGroup[loopNum],apply=True,t=1,r=1,s=1,n=0,pn=1)
+	pm.editDisplayLayerMembers(FKLayer,FKjointGroup[loopNum])
 	
-#create 5 joint for the actualn binded jointand snap them to the locator
-ActualjointGroup = []
+#create 5 joint for the actual binded joint and snap them to the locator
+BindjointGroup = []
+BindLayer = pm.createDisplayLayer(e = True,n = "BindLayer",nr = True);
+pm.setAttr(BindLayer + ".color", True)
+pm.setAttr(BindLayer + ".overrideRGBColors", True)
+pm.setAttr(BindLayer + ".overrideColorRGB", [0,1,0])
 for loopNum in range(JOINT_NUMBER):
 	pm.select(d=True)
-	jointName = 'FK_leg' + str(loopNum) + '_jnt'
-	jointGroup.append(createAndBindJointToLoc(jointName,locatorGroup[loopNum]))
-	pm.makeIdentity(jointGroup[loopNum],apply=True,t=1,r=1,s=1,n=0,pn=1)
+	jointName = 'leg' + str(loopNum) + '_jnt'
+	BindjointGroup.append(createAndBindJointToLoc(jointName,locatorGroup[loopNum]))
+	pm.makeIdentity(BindjointGroup[loopNum],apply=True,t=1,r=1,s=1,n=0,pn=1)
+	pm.editDisplayLayerMembers(BindLayer,BindjointGroup[loopNum])
+	
+#create 5 joint for the IK and snap them to the locator
+IKjointGroup = []
+IKLayer = pm.createDisplayLayer(e = True,n = "IKLayer",nr = True);
+pm.setAttr(IKLayer + ".color", True)
+pm.setAttr(IKLayer + ".overrideRGBColors", True)
+pm.setAttr(IKLayer + ".overrideColorRGB", [0,0,1])
+for loopNum in range(JOINT_NUMBER):
+	pm.select(d=True)
+	jointName = 'IK_leg' + str(loopNum) + '_jnt'
+	IKjointGroup.append(createAndBindJointToLoc(jointName,locatorGroup[loopNum]))
+	pm.makeIdentity(IKjointGroup[loopNum],apply=True,t=1,r=1,s=1,n=0,pn=1)
+	pm.editDisplayLayerMembers(IKLayer,IKjointGroup[loopNum])
 	
 	
-#create 5 curves and snap them
+#create 5 curves and snap them for FK
 FKcurveGroup = []
 for loopNum in range(JOINT_NUMBER):
 	pm.select(d=True)
@@ -82,10 +105,9 @@ for loopNum in range(JOINT_NUMBER):
 	pm.setAttr(FKcurveGroup[loopNum][0] + '.scaleX', keyable=False)
 	pm.setAttr(FKcurveGroup[loopNum][0] + '.scaleY', keyable=False)
 	pm.setAttr(FKcurveGroup[loopNum][0] + '.scaleZ', keyable=False)
-#legCurveGroup = pm.group(curveGroup, n='legCurveGroup')
-#legCurveGroup.zeroTransformPivots()
+	pm.editDisplayLayerMembers(FKLayer,FKcurveGroup[loopNum][0])
 
-#create 5 group nodes
+#create 5 group nodes for FK
 FKgrpGroup = []
 for loopNum in range(JOINT_NUMBER):
 	pm.select(d=True)
@@ -105,7 +127,10 @@ for loopNum in range(0,JOINT_NUMBER-1):
 	pm.parent(FKjointGroup[loopNum],FKjointGroup[loopNum+1])
 	
 for loopNum in range(0,JOINT_NUMBER-1):
-	pm.parent(ActualjointGroup[loopNum],ActualjointGroup[loopNum+1])
+	pm.parent(BindjointGroup[loopNum],BindjointGroup[loopNum+1])
+	
+for loopNum in range(0,JOINT_NUMBER-1):
+	pm.parent(IKjointGroup[loopNum],IKjointGroup[loopNum+1])
 	
 #parent those curves
 #for loopNum in range(0,JOINT_NUMBER-1):
