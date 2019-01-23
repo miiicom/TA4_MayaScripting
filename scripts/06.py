@@ -111,7 +111,7 @@ for loopNum in range(JOINT_NUMBER):
 IKCurveGroup = []
 pm.select(d=True)
 CurveName = 'IK_leg_ctl'
-IKCurveGroup.append(createAndBindCurveToJoint(CurveName,IKjointGroup[1]));
+IKCurveGroup.append(createAndBindCurveToJoint(CurveName,IKjointGroup[2]));
 pm.setAttr(IKCurveGroup[0][0] + '.scaleX', 2)
 pm.setAttr(IKCurveGroup[0][0] + '.scaleY', 2)
 pm.setAttr(IKCurveGroup[0][0] + '.scaleZ', 2)
@@ -195,8 +195,10 @@ for loopNum in range(0,JOINT_NUMBER):
 	pm.orientConstraint(FKcurveGroup[loopNum],FKjointGroup[loopNum], weight=1, mo = True)
 	
 # give POINT constrain
+IKHandler = pm.ikHandle( sj=IKjointGroup[4], ee=IKjointGroup[2], p=1, w=1 )
 
-pm.pointConstraint(IKCurveGroup[0],IKjointGroup[1],weight=1, mo = True)
+pm.pointConstraint(IKCurveGroup[0][0],IKHandler[0],w = 1, offset = (0,0,0))
+#pm.parent(IKHandler[0],IKCurveGroup[0][0])
 
 ControlCurve = pm.circle(n = 'ControlCurver')
 pm.select(ControlCurve)
