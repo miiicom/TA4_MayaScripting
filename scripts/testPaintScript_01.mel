@@ -1,0 +1,73 @@
+global string $sphereNamePrefix[];
+global int $spherePaintFreeSlot = 0;
+global int $spherePaintSlots = 0;
+
+global proc testPaint( string $context )
+{
+	// initialize all the other commands in this scriptable 
+	// paint tool context.
+	// 
+	artUserPaintCtx -e
+		-ic "initTestPaint"
+		-fc "finishTestPaint"
+		-svc "setTestPaintValue"
+		-gvc "getTestPaintValue"
+		-gsc ""
+		-cc ""
+		-tcc ""
+		-gac ""
+		$context;
+}
+
+global proc string initTestPaint( string $name )
+{
+	global string $sphereNamePrefix[];
+	global int $spherePaintFreeSlot;
+	global int $spherePaintSlots;
+
+	int $slot;
+
+	// find a free slot for this surface in the global arrays
+	//
+	for ( $slot = $spherePaintFreeSlot; $slot < $spherePaintSlots; $slot++ ) {
+		if ( $sphereNamePrefix[$slot] == "" ) {
+			break;
+		}
+	}  
+	if ( $slot == $spherePaintSlots ) {
+		$spherePaintSlots++;
+		$spherePaintFreeSlot = $spherePaintSlots;
+	}
+
+	$myString = "initial paint\n";
+	print $myString;
+	
+	string $type = nodeType($name);
+	int $isMesh = $type == "mesh";
+	print ("obj name is " + $name + "and it is a" + $isMesh);
+	
+	return ( "-id " + $slot + " -grid 8 8"+ " -position world");
+}
+
+global proc finishTestPaint( string $name )
+{
+	$myString = "finish paint\n";
+	print $myString;
+}
+
+global proc setTestPaintValue( int $slot,int $index,float $val,	float $x,float $y,float $z)
+{
+	$myString = "setup paint paint\n";
+	print $myString;
+	print("the world space locaiton is" + $x + " " + $y + " " + $z);
+	
+	select -r pPlane1.vtx[$index] ;
+	polyColorPerVertex -rgb 0.0 0.0 0.0;
+}
+
+global proc getTestPaintValue( int $slot, int $index )
+{
+	$myString = "getTest paint\n";
+	print $myString;
+	print("the slot is " + $slot + "and the index is " + $index + "\n");
+}
