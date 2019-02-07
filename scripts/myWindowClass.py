@@ -37,13 +37,13 @@ class myWindowClass:
 			cmds.deleteUI(buttonpiece);
 			self.buttonList = [];
 		for colorpiece in self.colorList:
-			self.colorList.remove(colorpiece);
+			##self.colorList.remove(colorpiece);
 			self.colorList = [];
 		for shaderpiece in self.shaderList:
-			cmds.delete(shaderpiece,r = True);
+			cmds.delete(shaderpiece);
 			self.shaderList = [];
 		for shaderGPpiece in self.shaderGroup:
-			cmds.delete(shaderGPpiece,r = True);
+			cmds.delete(shaderGPpiece);
 			self.shaderGroup = [];
 	
 	def _init_(self,name):
