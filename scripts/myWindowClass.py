@@ -37,6 +37,7 @@ class myWindowClass:
 			cmds.deleteUI(buttonpiece);
 			self.buttonList = [];
 		for colorpiece in self.colorList:
+			##self.colorList.remove(colorpiece);
 			self.colorList = [];
 		for shaderpiece in self.shaderList:
 			cmds.delete(shaderpiece);
@@ -91,11 +92,18 @@ class myWindowClass:
 	def AddBakeButton(self):
 		tempFrameLayout = cmds.frameLayout( label='BakeButton', p = self.windowName ,cll = True)
 		self.BakeLayout = cmds.gridLayout(ag = True, cellWidthHeight = (self.size[0],self.size[0]/10), nc = 1,p = tempFrameLayout);
-		cmds.button(label = 'BakeIDMap',p = self.BakeLayout);
+		cmds.button(label = 'BakeIDMap',p = self.BakeLayout,command = self.ClickAndBake );
 		cmds.button(label = 'Clear',p = self.BakeLayout, command = self.CleanUp);
 		
-
-		
+	def ClickAndBake(self,*args):
+		BakeObject = cmds.ls(sl=True,long=True);
+		if(len(BakeObject) != 1):	
+			cmds.error("More than 1 object selected for baking, bake failed, please make sure you only select the object you want to bake ID map");
+		else:
+			tempDuplicateObj = cmds.duplicate(rr = True);
+			print('RenderPath is '+ cmds.workspace( q=True, dir=True));
+			cmds.surfaceSampler( mapOutput='diffuseRGB', filename=cmds.workspace( q=True, dir=True) + 'IDMap', fileFormat='png', source=BakeObject[0], target= tempDuplicateObj, uv='map1',mapWidth = 256,mapHeight = 256);
+			cmds.delete(tempDuplicateObj);
 testWindow = myWindowClass();
 testWindow._init_('Material It Now!');
 testWindow.create();
