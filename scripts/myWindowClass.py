@@ -37,7 +37,6 @@ class myWindowClass:
 			cmds.deleteUI(buttonpiece);
 			self.buttonList = [];
 		for colorpiece in self.colorList:
-			##self.colorList.remove(colorpiece);
 			self.colorList = [];
 		for shaderpiece in self.shaderList:
 			cmds.delete(shaderpiece);
