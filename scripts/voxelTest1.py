@@ -43,8 +43,7 @@ class myWindowClass:
 			EdgeGrp.append([mesh+".e[%s]"%x])
 		return(EdgeGrp);
 		
-	def calculateDistanceBetweenVerts(v1, v2):
-		print();
+	def calculateDistanceBetweenVerts(self,v1, v2):
 		Location1 = cmds.xform(v1, q=True, t=True);
 		Location2 = cmds.xform(v2, q=True, t=True);
     	
@@ -62,10 +61,29 @@ class myWindowClass:
 			cmds.select(sampleEdge);
 			cmds.ConvertSelectionToVertices();
 			sampleVerts = cmds.ls(sl=True, fl=True);
-			distance = calculateDistanceBetweenVerts(sampleVerts[0],sampleVerts[1]);
+			distance = self.calculateDistanceBetweenVerts(sampleVerts[0],sampleVerts[1]);
 			average = ((count-1)*average + distance)/count
 			count += 1;
 		return average;
+	def voxelize(self,mesh,avgLength):
+		voxel = [];
+		voxelMap = {};
+		vertexGrp = self.getMeshVertices(mesh);
+		vertexNum = len(vertexGrp);
+		i = 0
+		
+		for x in vertexGrp:
+			location = cmds.xform(x, q=True, t=True);
+			location = [int(location[0]), int(location[1]), int(location[2])]; #round to int
+			print(location)
+			key = str(location[0])+","+str(location[1])+","+str(location[2]); #store voxelized position
+			if not key in voxelMap:
+				temp = cmds.polyCube();
+				cmds.scale(1.5*avgLength,1.5*avgLength,1.5*avgLength,temp);
+				cmds.xform(temp, t=location)
+				voxel += [temp]
+				voxelMap[key] = True
+				i += 1
 		
 		
 testWindow = myWindowClass();
@@ -73,4 +91,7 @@ testWindow._init_('Material It Now!');
 testWindow.create();
 	
 selected = cmds.ls(sl=True)[0];
-print(testWindow.calculateAvgEdgeLRN(selected));
+cmds.polyRemesh(tsb = True,rft = 5);
+avgLength = testWindow.calculateAvgEdgeLRN(selected);
+print(avgLength);
+testWindow.voxelize(selected,avgLength);
