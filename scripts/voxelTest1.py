@@ -5,14 +5,15 @@ class myWindowClass:
 	kind = 'UIWindow';
 	windowName = 'defaultWindow';
 	title = 'defaultTitle';
-	size = (512,512);
+	size = (256,256);
 	
 	sampleRate = 1; #Default to 1
+	RemeshLength = 5;
 	
 	def _init_(self,name):
 		self.windowName = 'myUIWindow';
 		self.title = name;
-		self.size = (512,512);
+		self.size = (256,256);
 		print('initiated')
 		
 	def create(self):
@@ -65,6 +66,29 @@ class myWindowClass:
 			average = ((count-1)*average + distance)/count
 			count += 1;
 		return average;
+		
+	def DoRemesh(self,mesh):
+		cmds.select(mesh);
+		cmds.polyRemesh(tsb = True,rft = self.RemeshLength);
+		
+	def CalculateAndVoxelize(self,mesh):
+		selected = cmds.ls(sl=True)[0];
+		AveLen = self.calculateAvgEdgeLRN(selected);
+		self.DoRemesh(selected);
+		self.voxelize(selected,AveLen);
+		
+	def DropFunction( self, dragControl, dropControl, messages, x, y, dragType ): 
+		print(dragControl + '\n');
+		print(dropControl+ '\n');
+		print(messages+ '\n');
+		print(x+ '\n');
+		print(y+ '\n');
+	
+	def AddLayout(self):
+		tempFrameLayout = cmds.frameLayout( label='Sliders', p = self.windowName);
+		RemeshLengthSlder = cmds.floatSliderGrp(l= 'RemeshEdgeLength',field = True, min=1, max=10, value=5, step=0.1 ,p = tempFrameLayout, dpc = self.DropFunction);
+		VoxelizeButton = cmds.button(l = 'Voxelize',p = tempFrameLayout, c = self.CalculateAndVoxelize);
+		
 	def voxelize(self,mesh,avgLength):
 		voxel = [];
 		voxelMap = {};
@@ -85,13 +109,14 @@ class myWindowClass:
 				voxelMap[key] = True
 				i += 1
 		
-		
 testWindow = myWindowClass();
-testWindow._init_('Material It Now!');
+testWindow._init_('Voxelizer');
 testWindow.create();
-	
-selected = cmds.ls(sl=True)[0];
-cmds.polyRemesh(tsb = True,rft = 5);
-avgLength = testWindow.calculateAvgEdgeLRN(selected);
-print(avgLength);
-testWindow.voxelize(selected,avgLength);
+testWindow.AddLayout();
+
+#selected = cmds.ls(sl=True)[0];
+#print(cmds.objectType(selected,))
+#testWindow.DoRemesh(selected);
+#avgLength = testWindow.calculateAvgEdgeLRN(selected);
+#print(avgLength);
+#testWindow.voxelize(selected,avgLength);
