@@ -17,6 +17,7 @@ class myWindowClass:
 		print('initiated')
 		
 	def create(self):
+		self.VoxelMeshGroup = cmds.group( em=True, name='VoxelMeshs');
 		if cmds.window(self.windowName, exists = True):
 			cmds.deleteUI(self.windowName,window = True)
 		self.windowName = cmds.window(self.windowName,title = self.title,widthHeight = self.size);
@@ -72,22 +73,27 @@ class myWindowClass:
 		cmds.polyRemesh(tsb = True,rft = self.RemeshLength);
 		
 	def CalculateAndVoxelize(self,mesh):
+		if not (cmds.objExists('VoxelMeshs')):
+			self.VoxelMeshGroup = cmds.group( em=True, name='VoxelMeshs');
 		selected = cmds.ls(sl=True)[0];
 		AveLen = self.calculateAvgEdgeLRN(selected);
 		self.DoRemesh(selected);
 		self.voxelize(selected,AveLen);
 		
-	def DropFunction( self, dragControl, dropControl, messages, x, y, dragType ): 
-		print(dragControl + '\n');
-		print(dropControl+ '\n');
-		print(messages+ '\n');
-		print(x+ '\n');
-		print(y+ '\n');
+	def TypeFunction(self,*_):
+		value = cmds.floatSliderGrp(self.RemeshLengthSlder,q=True, v=True)
+		print('Type value is' + str(value));
+		self.RemeshLength = value;
+		
+	def DragFunction(self,*_): 
+		value = cmds.floatSliderGrp(self.RemeshLengthSlder,q=True, v=True)
+		print('Drag value is' + str(value));
+		self.RemeshLength = value;
 	
 	def AddLayout(self):
-		tempFrameLayout = cmds.frameLayout( label='Sliders', p = self.windowName);
-		RemeshLengthSlder = cmds.floatSliderGrp(l= 'RemeshEdgeLength',field = True, min=1, max=10, value=5, step=0.1 ,p = tempFrameLayout, dpc = self.DropFunction);
-		VoxelizeButton = cmds.button(l = 'Voxelize',p = tempFrameLayout, c = self.CalculateAndVoxelize);
+		self.tempFrameLayout = cmds.frameLayout( label='Sliders', p = self.windowName);
+		self.RemeshLengthSlder = cmds.floatSliderGrp(l= 'RemeshEdgeLength',field = True, min=1, max=10, value=5, step=0.1 ,p = self.tempFrameLayout, dc = self.DragFunction, cc = self.TypeFunction);
+		self.VoxelizeButton = cmds.button(l = 'Voxelize',p = self.tempFrameLayout, c = self.CalculateAndVoxelize);
 		
 	def voxelize(self,mesh,avgLength):
 		voxel = [];
@@ -95,8 +101,11 @@ class myWindowClass:
 		vertexGrp = self.getMeshVertices(mesh);
 		vertexNum = len(vertexGrp);
 		i = 0
+		mesh
 		
 		for x in vertexGrp:
+			cmds.select(x);
+			color = cmds.polyColorPerVertex(q = True,rgb = True);
 			location = cmds.xform(x, q=True, t=True);
 			location = [int(location[0]), int(location[1]), int(location[2])]; #round to int
 			print(location)
@@ -104,7 +113,10 @@ class myWindowClass:
 			if not key in voxelMap:
 				temp = cmds.polyCube();
 				cmds.scale(1.5*avgLength,1.5*avgLength,1.5*avgLength,temp);
-				cmds.xform(temp, t=location)
+				cmds.polyColorPerVertex(temp, rgb = color);
+				cmds.parent( temp, self.VoxelMeshGroup );
+				cmds.setAttr(temp[0]+'.displayColors',  1);
+				cmds.xform(temp[0], t=location);
 				voxel += [temp]
 				voxelMap[key] = True
 				i += 1
