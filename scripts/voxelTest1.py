@@ -6,9 +6,11 @@ class myWindowClass:
 	windowName = 'defaultWindow';
 	title = 'defaultTitle';
 	size = (256,256);
+	GetVertexColor = True;
 	
 	sampleRate = 1; #Default to 1
 	RemeshLength = 5;
+	RemeshMultiplier = 1.5;
 	
 	def _init_(self,name):
 		self.windowName = 'myUIWindow';
@@ -80,6 +82,10 @@ class myWindowClass:
 		self.DoRemesh(selected);
 		self.voxelize(selected,AveLen);
 		
+	def ChangeFunction(self,*_):
+		self.GetVertexColor = not self.GetVertexColor;
+		print(self.GetVertexColor);
+		
 	def TypeFunction(self,*_):
 		value = cmds.floatSliderGrp(self.RemeshLengthSlder,q=True, v=True)
 		print('Type value is' + str(value));
@@ -91,9 +97,15 @@ class myWindowClass:
 		self.RemeshLength = value;
 	
 	def AddLayout(self):
+		tempColumnLayout = cmds.columnLayout( adjustableColumn=True );
+		cmds.text( label='"---------------------------------------------ToolTips---------------------------------------------"' ,align='center');
+		cmds.text( label='RemeshEdgeLength is the World Space length on \n how Maya remeshs your model for voxelization \n 	Triangle edges longer than this value will be split into two edges. ' ,align='center');
 		self.tempFrameLayout = cmds.frameLayout( label='Sliders', p = self.windowName);
-		self.RemeshLengthSlder = cmds.floatSliderGrp(l= 'RemeshEdgeLength',field = True, min=1, max=10, value=5, step=0.1 ,p = self.tempFrameLayout, dc = self.DragFunction, cc = self.TypeFunction);
-		self.VoxelizeButton = cmds.button(l = 'Voxelize',p = self.tempFrameLayout, c = self.CalculateAndVoxelize);
+		self.RemeshLengthSlder = cmds.floatSliderGrp(l= 'RemeshEdgeLength',field = True, min=0.1, max=10, value=5, step=0.1 ,p = self.tempFrameLayout, dc = self.DragFunction, cc = self.TypeFunction);
+		cmds.separator()
+		self.GetVertexColorCheck = cmds.checkBox( label='GetVertexColor / If checked, cubes will be created with vertex color from selection', align='center',v = True,p = self.tempFrameLayout, cc = self.ChangeFunction);
+		cmds.separator()
+		self.VoxelizeButton = cmds.button(l = '---------------!!Voxelize!!---------------',p = self.tempFrameLayout, c = self.CalculateAndVoxelize);
 		
 	def voxelize(self,mesh,avgLength):
 		voxel = [];
@@ -102,17 +114,24 @@ class myWindowClass:
 		vertexNum = len(vertexGrp);
 		i = 0
 		mesh
+		CubeMultiplier = self.RemeshLength / avgLength;
 		
 		for x in vertexGrp:
 			cmds.select(x);
-			color = cmds.polyColorPerVertex(q = True,rgb = True);
+			if(self.GetVertexColor):
+				try:
+					color = cmds.polyColorPerVertex(q = True,rgb = True);
+				except:
+					color = (0.2,0.2,0.2);
+			else:
+				color = (0.2,0.2,0.2);
 			location = cmds.xform(x, q=True, t=True);
 			location = [int(location[0]), int(location[1]), int(location[2])]; #round to int
 			print(location)
 			key = str(location[0])+","+str(location[1])+","+str(location[2]); #store voxelized position
 			if not key in voxelMap:
 				temp = cmds.polyCube();
-				cmds.scale(1.5*avgLength,1.5*avgLength,1.5*avgLength,temp);
+				cmds.scale(CubeMultiplier *avgLength,CubeMultiplier *avgLength,CubeMultiplier*avgLength,temp);
 				cmds.polyColorPerVertex(temp, rgb = color);
 				cmds.parent( temp, self.VoxelMeshGroup );
 				cmds.setAttr(temp[0]+'.displayColors',  1);
@@ -122,7 +141,7 @@ class myWindowClass:
 				i += 1
 		
 testWindow = myWindowClass();
-testWindow._init_('Voxelizer');
+testWindow._init_('Simple Voxelizer');
 testWindow.create();
 testWindow.AddLayout();
 
