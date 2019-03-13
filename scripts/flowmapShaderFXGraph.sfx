@@ -1,0 +1,819 @@
+SFX_WIN
+Version=28
+GroupVersion=-1.000000
+Advanced=0
+HelpID=0
+ParentMaterial=0
+NumberOfNodes=40
+#NT=10100 1 Hw Material Base-Hw Shader Nodes-Core
+	PC=35
+	name=1 v=5000 _Material
+	version=1 v=2003 1.842000
+	posx=1 v=2003 -1468.630371
+	posy=1 v=2003 155.724640
+	classname=1 v=5000 Hw Material Base
+	submenuname=1 v=5000 Core
+	bitmapnodeindex=1 v=2002 10
+	isadvanced=1 v=2001 1
+	advanceddelete=1 v=2001 1
+	helpid=1 v=2002 73
+	grpnodecolor=1 v=5012 4
+	grpPosX=1 v=2003 -1129.380005
+	grpPosY=1 v=2003 -143.923004
+	disableconsolidation_HwShader=2 e=1 v=2001 0
+	value_ClampDynamicLights=2 e=1 v=2002 99
+	value_MaxNumberLights=2 e=1 v=2002 3
+	value_Gamma=2 e=2 v=2001 0
+	value_Wireframe=2 e=3 v=2001 0
+	value_DepthTest=2 e=4 v=2001 1
+	value_DepthWrite=2 e=4 v=2001 1
+	value_CastShadow=2 e=5 v=2001 1
+	value_SurfaceMaskCutoff=2 e=6 v=2003 0.000000
+	value_SSAO=2 e=7 v=2001 1
+	options_Tessellation=2 e=900 v=5012 0
+	value_FlatTessellationBlend=2 e=901 v=2003 0.000000
+	value_BoundingBoxMultiplier=2 e=902 v=2003 1.000000
+	value_ClippingBiasAdd=2 e=902 v=2003 5.000000
+	options_Displacement=2 e=1000 v=5012 1
+	options_VDM_CoordSys=2 e=1001 v=5012 1
+	value_DisplacementMultiplier=2 e=1002 v=2003 1.000000
+	value_DisplacementOffset=2 e=1003 v=2003 0.000000
+	cgfxprofile_HwShader=2 e=1999 v=5012 0
+	config_HwShader=2 e=2000 v=5012 1
+	shadername_HwShader=2 e=2001 v=5000 scripts/test.fx
+	saveshadertodisk_HwShader=2 e=2002 v=5015 
+	group=-1
+	ISC=9
+		SVT=2002 2002 0 0 0 _NumberOfLights
+		SVT=5001 3002 0 0 0 _ObjectVertexPosition
+		SVT=5001 2003 0 0 0 
+		SVT=5001 3002 0 0 0 _Displacement
+		SVT=5001 5018 0 0 0 _SurfaceShader
+		SVT=5001 2003 0 0 0 _SurfaceMask
+		SVT=5001 2003 0 0 0 _SurfaceMaskCutoff
+		SVT=2001 2001 0 0 0 _Gamma
+		SVT=1001 1002 0 0 0 
+	OSC=0
+#NT=10100 1 Traditional Game Surface Shader-Hw Shader Nodes-Surface Shaders
+	PC=26
+	name=1 v=5000 TraditionalGameSurfaceShader
+	version=1 v=2003 1.481000
+	posx=1 v=2003 -1758.666504
+	posy=1 v=2003 123.333328
+	previewswatch=1 v=2002 2
+	classname=1 v=5000 Traditional Game Surface Shader
+	submenuname=1 v=5000 Surface Shaders
+	bitmapnodeindex=1 v=2002 10
+	isadvanced=1 v=2001 1
+	advanceddelete=1 v=2001 1
+	helpid=1 v=2002 74
+	grpnodecolor=1 v=5012 4
+	grpPosX=1 v=2003 -990.607971
+	grpPosY=1 v=2003 169.649994
+	options_Diffuse=2 e=1 v=5012 0
+	options_Specular=2 e=1 v=5012 0
+	value_FlipBackFaces=2 e=1 v=2001 1
+	value_TranslucencyDistortion=2 e=1100 v=2003 0.200000
+	value_TranslucencyPower=2 e=1101 v=2003 3.000000
+	value_TranslucencyMinimum=2 e=1102 v=2003 0.000000
+	color_TranslucencyOuter=2 e=1104 v=3003 1.000000,0.640000,0.250000,1.000000
+	color_TranslucencyMedium=2 e=1105 v=3003 1.000000,0.210000,0.140000,1.000000
+	color_TranslucencyInner=2 e=1106 v=3003 0.250000,0.050000,0.020000,1.000000
+	value_UseStreamLightData=2 e=1500 v=2001 0
+	value_BakedLightColorSet=2 e=1502 v=5000 BakedLightColorSet
+	value_BakedLightColorSetUnshared=2 e=1503 v=2001 1
+	group=-1
+	ISC=17
+		SVT=5001 2003 0 0 0 _Opacity
+		SVT=5001 3002 0 0 0 _Emissive
+		SVT=5001 2003 0 0 0 _AmbientOcclusion
+		SVT=5001 3002 0 0 0 _DiffuseColor
+		SVT=5001 2003 0 0 0 _SpecularPower
+		SVT=5001 3002 0 0 0 _SpecularColor
+		SVT=5001 3002 0 0 0 _Reflection
+		SVT=5001 2003 0 0 0 _ReflectionIntensity
+		SVT=5001 3002 0 0 0 _Normal
+		SVT=5001 3002 0 0 0 _ObjectThickness
+		SVT=5001 2003 0 0 0 _BlendedNormal
+		SVT=5001 2003 0 0 0 _BlendedNormalMask
+		SVT=5001 3002 0 0 0 _AnisotropicDirection
+		SVT=5001 3001 0 0 0 _AnisotropicSpread
+		SVT=5001 3002 0 0 0 _IBL
+		SVT=5001 2003 0 0 0 _Weight
+		SVT=1001 1002 0 0 0 
+	OSC=2
+		SVT=5001 5018 0 _SurfaceShader
+		CC=1
+			C=1 0 0 0 4 0 0
+			CPC=0
+		SVT=1001 1002 0 
+		CC=0
+#NT=20086 0
+	PC=2
+	posx=1 v=2003 -5723.463867
+	posy=1 v=2003 118.910629
+	group=-1
+	ISC=0
+	OSC=1
+		SVT=5001 2003 1 
+		CC=1
+			C=2 0 1 35 0 1 0
+			CPC=0
+#NT=20020 0
+	PC=2
+	posx=1 v=2003 -5125.116699
+	posy=1 v=2003 -775.148376
+	group=-1
+	ISC=6
+		SVT=5001 2003 1 0 0 
+		SVT=5001 2003 2 0 0 
+		SVT=5001 3001 3 0 0 
+		SVT=5001 2003 4 0 0 
+		SVT=5001 3002 5 0 0 
+		SVT=5001 2003 6 0 0 
+	OSC=3
+		SVT=5001 3001 7 
+		CC=1
+			C=3 0 7 9 0 1 0
+			CPC=0
+		SVT=5001 3002 8 
+		CC=0
+		SVT=5001 3003 9 
+		CC=0
+#NT=20139 0
+	PC=2
+	posx=1 v=2003 -4870.363770
+	posy=1 v=2003 -545.266541
+	group=-1
+	ISC=0
+	OSC=1
+		SVT=5001 3001 1 
+		CC=1
+			C=4 0 1 5 1 2 0
+			CPC=0
+#NT=20022 0
+	PC=2
+	posx=1 v=2003 -4623.875488
+	posy=1 v=2003 -775.225098
+	group=-1
+	ISC=2
+		SVT=5001 3001 1 0 0 
+		SVT=5001 3001 2 0 0 
+	OSC=1
+		SVT=5001 3001 3 
+		CC=1
+			C=5 0 3 12 0 1 0
+			CPC=0
+#NT=20026 0
+	PC=2
+	posx=1 v=2003 -5146.210449
+	posy=1 v=2003 533.843140
+	group=-1
+	ISC=2
+		SVT=5001 2003 1 0 0 
+		SVT=5001 2003 2 0 0 
+	OSC=1
+		SVT=5001 2003 3 
+		CC=2
+			C=6 0 3 33 0 1 0
+			CPC=0
+			C=6 0 3 34 0 1 0
+			CPC=0
+#NT=20017 0
+	PC=3
+	posx=1 v=2003 -5668.485840
+	posy=1 v=2003 578.666809
+	value=2 e=0 v=2003 0.500000
+	group=-1
+	ISC=0
+	OSC=1
+		SVT=5001 2003 1 
+		CC=1
+			C=7 0 1 6 1 2 0
+			CPC=0
+#NT=10100 1 Vertex Color-Hw Shader Nodes-Inputs Common
+	PC=14
+	name=1 v=5000 _VertexColor
+	version=1 v=2003 1.640000
+	posx=1 v=2003 -5349.095215
+	posy=1 v=2003 -777.133850
+	classname=1 v=5000 Vertex Color
+	submenuname=1 v=5000 Inputs Common
+	bitmapnodeindex=1 v=2002 70
+	helpid=1 v=2002 24
+	grpnodecolor=1 v=5012 5
+	grpPosX=1 v=2003 -546.642029
+	grpPosY=1 v=2003 -40.049500
+	colorsetindex_Vertex=2 e=1 v=2002 0
+	colorsetname_Vertex=2 e=2 v=5000 
+	perinstanceunshared_Vertex=2 e=3 v=2001 0
+	group=-1
+	ISC=4
+		SVT=2002 2002 0 0 0 
+		SVT=2001 2001 0 0 0 
+		SVT=5000 5000 0 0 0 
+		SVT=1001 1002 0 0 0 
+	OSC=7
+		SVT=5001 3003 0 _RGBA
+		CC=0
+		SVT=5001 3002 0 _RGB
+		CC=0
+		SVT=5001 2003 0 _Red
+		CC=1
+			C=8 2 0 3 0 1 0
+			CPC=0
+		SVT=5001 2003 0 _Green
+		CC=1
+			C=8 3 0 3 1 2 0
+			CPC=0
+		SVT=5001 2003 0 _Blue
+		CC=0
+		SVT=5001 2003 0 _Alpha
+		CC=0
+		SVT=5001 1002 0 
+		CC=0
+#NT=20016 0
+	PC=2
+	posx=1 v=2003 -4873.292480
+	posy=1 v=2003 -776.097961
+	group=-1
+	ISC=2
+		SVT=5001 3001 1 0 0 
+		SVT=5001 3001 2 0 0 
+	OSC=1
+		SVT=5001 3001 3 
+		CC=1
+			C=9 0 3 5 0 1 0
+			CPC=0
+#NT=20139 0
+	PC=4
+	posx=1 v=2003 -5133.291504
+	posy=1 v=2003 -540.804138
+	valueX=2 e=0 v=2003 2.000000
+	valueY=2 e=0 v=2003 2.000000
+	group=-1
+	ISC=0
+	OSC=1
+		SVT=5001 3001 1 
+		CC=1
+			C=10 0 1 9 1 2 0
+			CPC=0
+#NT=20139 0
+	PC=5
+	name=1 v=5000 Max_Distortion
+	posx=1 v=2003 -4523.054199
+	posy=1 v=2003 -558.823242
+	valueX=2 e=0 v=2003 0.080000
+	valueY=2 e=0 v=2003 0.080000
+	group=-1
+	ISC=0
+	OSC=1
+		SVT=5001 3001 1 
+		CC=1
+			C=11 0 1 12 1 2 0
+			CPC=0
+#NT=20016 0
+	PC=2
+	posx=1 v=2003 -4314.029785
+	posy=1 v=2003 -652.396301
+	group=-1
+	ISC=2
+		SVT=5001 3001 1 0 0 
+		SVT=5001 3001 2 0 0 
+	OSC=1
+		SVT=5001 3001 3 
+		CC=2
+			C=12 0 3 15 0 1 0
+			CPC=0
+			C=12 0 3 16 0 1 0
+			CPC=0
+#NT=20020 0
+	PC=2
+	posx=1 v=2003 -4280.424316
+	posy=1 v=2003 472.243286
+	group=-1
+	ISC=6
+		SVT=5001 2003 1 0 0 
+		SVT=5001 2003 2 0 0 
+		SVT=5001 3001 3 0 0 
+		SVT=5001 2003 4 0 0 
+		SVT=5001 3002 5 0 0 
+		SVT=5001 2003 6 0 0 
+	OSC=3
+		SVT=5001 3001 7 
+		CC=1
+			C=13 0 7 16 1 2 0
+			CPC=0
+		SVT=5001 3002 8 
+		CC=0
+		SVT=5001 3003 9 
+		CC=0
+#NT=20020 0
+	PC=2
+	posx=1 v=2003 -4287.172363
+	posy=1 v=2003 137.158264
+	group=-1
+	ISC=6
+		SVT=5001 2003 1 0 0 
+		SVT=5001 2003 2 0 0 
+		SVT=5001 3001 3 0 0 
+		SVT=5001 2003 4 0 0 
+		SVT=5001 3002 5 0 0 
+		SVT=5001 2003 6 0 0 
+	OSC=3
+		SVT=5001 3001 7 
+		CC=1
+			C=14 0 7 15 1 2 0
+			CPC=0
+		SVT=5001 3002 8 
+		CC=0
+		SVT=5001 3003 9 
+		CC=0
+#NT=20016 0
+	PC=2
+	posx=1 v=2003 -3891.202393
+	posy=1 v=2003 134.578217
+	group=-1
+	ISC=2
+		SVT=5001 3001 1 0 0 
+		SVT=5001 3001 2 0 0 
+	OSC=1
+		SVT=5001 3001 3 
+		CC=1
+			C=15 0 3 20 1 2 0
+			CPC=0
+#NT=20016 0
+	PC=2
+	posx=1 v=2003 -3891.893311
+	posy=1 v=2003 525.102966
+	group=-1
+	ISC=2
+		SVT=5001 3001 1 0 0 
+		SVT=5001 3001 2 0 0 
+	OSC=1
+		SVT=5001 3001 3 
+		CC=1
+			C=16 0 3 21 1 2 0
+			CPC=0
+#NT=10100 1 UV Set-Hw Shader Nodes-Inputs Common
+	PC=14
+	name=1 v=5000 _UVSet
+	version=1 v=2003 1.690000
+	posx=1 v=2003 -4005.896240
+	posy=1 v=2003 -947.777588
+	classname=1 v=5000 UV Set
+	submenuname=1 v=5000 Inputs Common
+	bitmapnodeindex=1 v=2002 65
+	helpid=1 v=2002 23
+	grpnodecolor=1 v=5012 5
+	grpPosX=1 v=2003 -450.000000
+	grpPosY=1 v=2003 -221.667007
+	uvindex_UVs=2 e=2 v=2002 0
+	uvsetname_UVs=2 e=3 v=5000 
+	perinstanceunshared_UVs=2 e=4 v=2001 0
+	group=-1
+	ISC=4
+		SVT=2002 2002 0 0 0 
+		SVT=5000 5000 0 0 0 
+		SVT=2001 2001 0 0 0 
+		SVT=1001 1002 0 0 0 
+	OSC=3
+		SVT=5001 3003 0 _UVWZ
+		CC=0
+		SVT=5001 3001 0 _UV
+		CC=1
+			C=17 1 0 18 0 1 0
+			CPC=0
+		SVT=5001 1002 0 
+		CC=0
+#NT=20016 0
+	PC=2
+	posx=1 v=2003 -3746.968506
+	posy=1 v=2003 -940.666382
+	group=-1
+	ISC=2
+		SVT=5001 3001 1 0 0 
+		SVT=5001 3001 2 0 0 
+	OSC=1
+		SVT=5001 3001 3 
+		CC=2
+			C=18 0 3 20 0 1 0
+			CPC=0
+			C=18 0 3 21 0 1 0
+			CPC=0
+#NT=20139 0
+	PC=3
+	name=1 v=5000 Tiling
+	posx=1 v=2003 -4005.914795
+	posy=1 v=2003 -743.825439
+	group=-1
+	ISC=0
+	OSC=1
+		SVT=5001 3001 1 
+		CC=1
+			C=19 0 1 18 1 2 0
+			CPC=0
+#NT=20026 0
+	PC=2
+	posx=1 v=2003 -3353.335693
+	posy=1 v=2003 90.666656
+	group=-1
+	ISC=2
+		SVT=5001 3001 1 0 0 
+		SVT=5001 3001 2 0 0 
+	OSC=1
+		SVT=5001 3001 3 
+		CC=2
+			C=20 0 3 22 0 0 0
+			CPC=0
+			C=20 0 3 38 0 0 0
+			CPC=0
+#NT=20026 0
+	PC=2
+	posx=1 v=2003 -3360.336426
+	posy=1 v=2003 446.333313
+	group=-1
+	ISC=2
+		SVT=5001 3001 1 0 0 
+		SVT=5001 3001 2 0 0 
+	OSC=1
+		SVT=5001 3001 3 
+		CC=2
+			C=21 0 3 23 0 0 0
+			CPC=0
+			C=21 0 3 39 0 0 0
+			CPC=0
+#NT=10100 1 Texture Map-Hw Shader Nodes-Textures
+	PC=25
+	name=1 v=5000 _TextureMap
+	version=1 v=2003 1.910000
+	posx=1 v=2003 -2927.802246
+	posy=1 v=2003 -256.274445
+	previewswatch=1 v=2002 1
+	classname=1 v=5000 Texture Map
+	submenuname=1 v=5000 Textures
+	bitmapnodeindex=1 v=2002 64
+	helpid=1 v=2002 19
+	grpnodecolor=1 v=5012 6
+	grpPosX=1 v=2003 -1103.290039
+	grpPosY=1 v=2003 -17.517900
+	defineinheader_MyTexture=2 e=1 v=2001 0
+	texturepath_MyTexture=2 e=1 v=5000 images/water_diff.png
+	uvindex_UVs=2 e=2 v=2002 0
+	uvsetname_UVs=2 e=3 v=5000 
+	autoPreviewTexture_MyTexture=2 e=4 v=2001 1
+	value_ConvertToLinearSpace=2 e=4 v=2001 0
+	perinstanceunshared_UVs=2 e=4 v=2001 0
+	texturenodename_MyTexture=2 e=5 v=5000 
+	addressu_Sampler=2 e=7 v=5012 0
+	addressv_Sampler=2 e=8 v=5012 0
+	addressw_Sampler=2 e=9 v=5012 0
+	uigroup_MyTexture=2 e=13 v=5000 
+	uiorder_MyTexture=2 e=13 v=2002 0
+	group=-1
+	ISC=4
+		SVT=5001 3001 0 0 0 _UV
+		SVT=5001 2003 0 0 0 
+		SVT=2001 2001 0 0 0 _ConvertToLinearSpace
+		SVT=1001 1002 0 0 0 
+	OSC=7
+		SVT=5001 3003 0 _RGBA
+		CC=0
+		SVT=5001 3002 0 _Color
+		CC=1
+			C=22 1 0 24 0 1 0
+			CPC=0
+		SVT=5001 2003 0 _Red
+		CC=0
+		SVT=5001 2003 0 _Green
+		CC=0
+		SVT=5001 2003 0 _Blue
+		CC=0
+		SVT=5001 2003 0 
+		CC=0
+		SVT=5001 1002 0 
+		CC=0
+#NT=10100 1 Texture Map-Hw Shader Nodes-Textures
+	PC=25
+	name=1 v=5000 _TextureMap
+	version=1 v=2003 1.910000
+	posx=1 v=2003 -2954.540527
+	posy=1 v=2003 386.392242
+	previewswatch=1 v=2002 1
+	classname=1 v=5000 Texture Map
+	submenuname=1 v=5000 Textures
+	bitmapnodeindex=1 v=2002 64
+	helpid=1 v=2002 19
+	grpnodecolor=1 v=5012 6
+	grpPosX=1 v=2003 -1103.290039
+	grpPosY=1 v=2003 -17.517900
+	defineinheader_MyTexture=2 e=1 v=2001 0
+	texturepath_MyTexture=2 e=1 v=5000 images/water_diff.png
+	uvindex_UVs=2 e=2 v=2002 0
+	uvsetname_UVs=2 e=3 v=5000 
+	autoPreviewTexture_MyTexture=2 e=4 v=2001 1
+	value_ConvertToLinearSpace=2 e=4 v=2001 0
+	perinstanceunshared_UVs=2 e=4 v=2001 0
+	texturenodename_MyTexture=2 e=5 v=5000 
+	addressu_Sampler=2 e=7 v=5012 0
+	addressv_Sampler=2 e=8 v=5012 0
+	addressw_Sampler=2 e=9 v=5012 0
+	uigroup_MyTexture=2 e=13 v=5000 
+	uiorder_MyTexture=2 e=13 v=2002 0
+	group=-1
+	ISC=4
+		SVT=5001 3001 0 0 0 _UV
+		SVT=5001 2003 0 0 0 
+		SVT=2001 2001 0 0 0 _ConvertToLinearSpace
+		SVT=1001 1002 0 0 0 
+	OSC=7
+		SVT=5001 3003 0 _RGBA
+		CC=0
+		SVT=5001 3002 0 _Color
+		CC=1
+			C=23 1 0 24 1 2 0
+			CPC=0
+		SVT=5001 2003 0 _Red
+		CC=0
+		SVT=5001 2003 0 _Green
+		CC=0
+		SVT=5001 2003 0 _Blue
+		CC=0
+		SVT=5001 2003 0 
+		CC=0
+		SVT=5001 1002 0 
+		CC=0
+#NT=20031 0
+	PC=2
+	posx=1 v=2003 -2409.789795
+	posy=1 v=2003 -81.538452
+	group=-1
+	ISC=3
+		SVT=5001 3002 1 0 0 
+		SVT=5001 3002 2 0 0 
+		SVT=5001 2003 3 0 0 
+	OSC=1
+		SVT=5001 3002 4 
+		CC=1
+			C=24 0 4 1 3 0 0
+			CPC=0
+#NT=20022 0
+	PC=2
+	posx=1 v=2003 -3611.785400
+	posy=1 v=2003 1075.215332
+	group=-1
+	ISC=2
+		SVT=5001 2003 1 0 0 
+		SVT=5001 2003 2 0 0 
+	OSC=1
+		SVT=5001 2003 3 
+		CC=1
+			C=25 0 3 30 0 1 0
+			CPC=0
+#NT=20017 0
+	PC=3
+	posx=1 v=2003 -3908.043213
+	posy=1 v=2003 1117.099976
+	value=2 e=0 v=2003 0.500000
+	group=-1
+	ISC=0
+	OSC=1
+		SVT=5001 2003 1 
+		CC=1
+			C=26 0 1 25 1 2 0
+			CPC=0
+#NT=20017 0
+	PC=3
+	posx=1 v=2003 -3110.596191
+	posy=1 v=2003 1250.167236
+	value=2 e=0 v=2003 2.000000
+	group=-1
+	ISC=0
+	OSC=1
+		SVT=5001 2003 1 
+		CC=1
+			C=27 0 1 28 1 2 0
+			CPC=0
+#NT=20016 0
+	PC=2
+	posx=1 v=2003 -2829.955322
+	posy=1 v=2003 1119.126099
+	group=-1
+	ISC=2
+		SVT=5001 2003 1 0 0 
+		SVT=5001 2003 2 0 0 
+	OSC=1
+		SVT=5001 2003 3 
+		CC=2
+			C=28 0 3 29 2 3 0
+			CPC=0
+			C=28 0 3 24 2 3 0
+			CPC=0
+#NT=20031 0
+	PC=2
+	posx=1 v=2003 -2369.760986
+	posy=1 v=2003 528.469910
+	group=-1
+	ISC=3
+		SVT=5001 3002 1 0 0 
+		SVT=5001 3002 2 0 0 
+		SVT=5001 2003 3 0 0 
+	OSC=1
+		SVT=5001 3002 4 
+		CC=1
+			C=29 0 4 1 8 0 0
+			CPC=0
+#NT=20040 0
+	PC=2
+	posx=1 v=2003 -3318.875488
+	posy=1 v=2003 1072.972534
+	group=-1
+	ISC=1
+		SVT=5001 2003 1 0 0 
+	OSC=1
+		SVT=5001 2003 2 
+		CC=1
+			C=30 0 2 28 0 1 0
+			CPC=0
+#NT=20042 0
+	PC=2
+	posx=1 v=2003 -4992.940918
+	posy=1 v=2003 369.411804
+	group=-1
+	ISC=1
+		SVT=5001 2003 1 0 0 
+	OSC=1
+		SVT=5001 2003 2 
+		CC=1
+			C=31 0 2 32 1 2 0
+			CPC=0
+#NT=20022 0
+	PC=2
+	posx=1 v=2003 -4796.471191
+	posy=1 v=2003 269.411682
+	group=-1
+	ISC=2
+		SVT=5001 2003 1 0 0 
+		SVT=5001 2003 2 0 0 
+	OSC=1
+		SVT=5001 2003 3 
+		CC=3
+			C=32 0 3 14 0 1 0
+			CPC=0
+			C=32 0 3 14 1 2 0
+			CPC=0
+			C=32 0 3 25 0 1 0
+			CPC=0
+#NT=20042 0
+	PC=2
+	posx=1 v=2003 -4899.832520
+	posy=1 v=2003 683.735168
+	group=-1
+	ISC=1
+		SVT=5001 2003 1 0 0 
+	OSC=1
+		SVT=5001 2003 2 
+		CC=1
+			C=33 0 2 34 1 2 0
+			CPC=0
+#NT=20022 0
+	PC=2
+	posx=1 v=2003 -4705.465332
+	posy=1 v=2003 567.945496
+	group=-1
+	ISC=2
+		SVT=5001 2003 1 0 0 
+		SVT=5001 2003 2 0 0 
+	OSC=1
+		SVT=5001 2003 3 
+		CC=2
+			C=34 0 3 13 0 1 0
+			CPC=0
+			C=34 0 3 13 1 2 0
+			CPC=0
+#NT=20016 0
+	PC=2
+	posx=1 v=2003 -5254.098145
+	posy=1 v=2003 95.628410
+	group=-1
+	ISC=2
+		SVT=5001 2003 1 0 0 
+		SVT=5001 2003 2 0 0 
+	OSC=1
+		SVT=5001 2003 3 
+		CC=3
+			C=35 0 3 32 0 1 0
+			CPC=0
+			C=35 0 3 31 0 1 0
+			CPC=0
+			C=35 0 3 6 0 1 0
+			CPC=0
+#NT=20017 0
+	PC=2
+	posx=1 v=2003 -5614.753906
+	posy=1 v=2003 341.530060
+	group=-1
+	ISC=0
+	OSC=1
+		SVT=5001 2003 1 
+		CC=1
+			C=36 0 1 35 1 2 0
+			CPC=0
+#NT=20017 0
+	PC=3
+	posx=1 v=2003 -2066.520996
+	posy=1 v=2003 205.776459
+	value=2 e=0 v=2003 19.170732
+	group=-1
+	ISC=0
+	OSC=1
+		SVT=5001 2003 1 
+		CC=1
+			C=37 0 1 1 4 0 0
+			CPC=0
+#NT=10100 1 Normal Map-Hw Shader Nodes-Textures
+	PC=27
+	name=1 v=5000 NormalMap
+	version=1 v=2003 1.140000
+	posx=1 v=2003 -2970.817627
+	posy=1 v=2003 141.082901
+	previewswatch=1 v=2002 1
+	classname=1 v=5000 Normal Map
+	submenuname=1 v=5000 Textures
+	bitmapnodeindex=1 v=2002 64
+	helpid=1 v=2002 75
+	grpnodecolor=1 v=5012 6
+	grpPosX=1 v=2003 -753.418030
+	grpPosY=1 v=2003 -97.111397
+	defineinheader_MyTexture=2 e=1 v=2001 0
+	texturepath_MyTexture=2 e=1 v=5000 images/water_norm.png
+	uvindex_UVs=2 e=2 v=2002 0
+	uvsetname_UVs=2 e=3 v=5000 
+	value_FlipGreenChannel=2 e=3 v=2001 0
+	autoPreviewTexture_MyTexture=2 e=4 v=2001 1
+	perinstanceunshared_UVs=2 e=4 v=2001 0
+	texturenodename_MyTexture=2 e=5 v=5000 
+	addressu_Sampler=2 e=7 v=5012 0
+	addressv_Sampler=2 e=8 v=5012 0
+	addressw_Sampler=2 e=9 v=5012 0
+	uiorder_MyTexture=2 e=13 v=2002 0
+	uigroup_MyTexture=2 e=13 v=5000 
+	options_Normal=2 e=800 v=5012 0
+	value_InvertGreenChannel=2 e=900 v=2001 0
+	group=-1
+	ISC=3
+		SVT=5001 3001 0 0 0 _UV
+		SVT=5001 2003 0 0 0 _NormalHeight
+		SVT=1001 1002 0 0 0 
+	OSC=3
+		SVT=5001 3002 0 _Normal
+		CC=1
+			C=38 0 0 29 0 1 0
+			CPC=0
+		SVT=5001 2003 0 
+		CC=0
+		SVT=5001 1002 0 
+		CC=0
+#NT=10100 1 Normal Map-Hw Shader Nodes-Textures
+	PC=27
+	name=1 v=5000 NormalMap
+	version=1 v=2003 1.140000
+	posx=1 v=2003 -2974.675293
+	posy=1 v=2003 683.511475
+	previewswatch=1 v=2002 1
+	classname=1 v=5000 Normal Map
+	submenuname=1 v=5000 Textures
+	bitmapnodeindex=1 v=2002 64
+	helpid=1 v=2002 75
+	grpnodecolor=1 v=5012 6
+	grpPosX=1 v=2003 -753.418030
+	grpPosY=1 v=2003 -97.111397
+	defineinheader_MyTexture=2 e=1 v=2001 0
+	texturepath_MyTexture=2 e=1 v=5000 images/water_norm.png
+	uvindex_UVs=2 e=2 v=2002 0
+	uvsetname_UVs=2 e=3 v=5000 
+	value_FlipGreenChannel=2 e=3 v=2001 0
+	autoPreviewTexture_MyTexture=2 e=4 v=2001 1
+	perinstanceunshared_UVs=2 e=4 v=2001 0
+	texturenodename_MyTexture=2 e=5 v=5000 
+	addressu_Sampler=2 e=7 v=5012 0
+	addressv_Sampler=2 e=8 v=5012 0
+	addressw_Sampler=2 e=9 v=5012 0
+	uiorder_MyTexture=2 e=13 v=2002 0
+	uigroup_MyTexture=2 e=13 v=5000 
+	options_Normal=2 e=800 v=5012 0
+	value_InvertGreenChannel=2 e=900 v=2001 0
+	group=-1
+	ISC=3
+		SVT=5001 3001 0 0 0 _UV
+		SVT=5001 2003 0 0 0 _NormalHeight
+		SVT=1001 1002 0 0 0 
+	OSC=3
+		SVT=5001 3002 0 _Normal
+		CC=1
+			C=39 0 0 29 1 2 0
+			CPC=0
+		SVT=5001 2003 0 
+		CC=0
+		SVT=5001 1002 0 
+		CC=0
