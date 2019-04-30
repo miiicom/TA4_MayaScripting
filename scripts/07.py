@@ -35,7 +35,7 @@ def giveOrientConstrain(Giver, Taker):
 
 
 def createLocators():
-	JOINT_NUMBER = 5
+	
 	for loopNum in range(JOINT_NUMBER):
 		locatorName = 'LegLocator' + str(loopNum)
 		locatorGroup.append (createLocator(locatorName, 0, loopNum * 5, 0))
@@ -206,7 +206,7 @@ def rigit():
 	pm.select(ControlCurve)
 	pm.setAttr(ControlCurve[0] + '.translate',[10,10,0])
 	pm.addAttr(longName='IKFKswitch', defaultValue=0.0, minValue=0.0, maxValue=10.0 )
-
+JOINT_NUMBER = 5
 locatorGroup = []
 FKjointGroup = []
 BindjointGroup = []
